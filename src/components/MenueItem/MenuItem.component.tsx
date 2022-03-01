@@ -1,12 +1,14 @@
 import React from "react";
 
 import "./MenueItem.styles.scss";
+import { useNavigate } from "react-router-dom";
 
 interface MenueItemProps {
   title: string;
   subtitle?: string;
   imageUrl: string;
   size?: string;
+  linkUrl?: string;
 }
 
 const MenuItem: React.FC<MenueItemProps> = ({
@@ -14,9 +16,12 @@ const MenuItem: React.FC<MenueItemProps> = ({
   subtitle = "SHOP NOW",
   imageUrl,
   size,
+  linkUrl,
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className={`${size} menu-item`}>
+    <div onClick={() => navigate(`${linkUrl}`)} className={`${size} menu-item`}>
       <div
         style={{
           backgroundImage: `url(${imageUrl})`,
